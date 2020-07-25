@@ -1,3 +1,6 @@
 *.o
 *.bin
 *.elf
+*.code-workspace
+._.DS_Store
+.DS_Store
