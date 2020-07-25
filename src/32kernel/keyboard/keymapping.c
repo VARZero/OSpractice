@@ -52,7 +52,7 @@ unsigned char KeyMapping(char keyboardKey){
         case 0x27:  string = ';';  break;
         case 0x28:  string = 0x27;  break;
         case 0x29:  string = '`';  break;
-        case 0x2A:  shiftOn = TRUE;  break; // 왼 쉬프트
+        case 0x2A:  string = 0x00; shiftOn = TRUE;  break; // 왼 쉬프트
         case 0x2B:  string = 0x5C;  break;
         // 쿼티하단
         case 0x2C:  string = 'z';  break;
@@ -66,19 +66,24 @@ unsigned char KeyMapping(char keyboardKey){
         case 0x33:  string = ',';  break;
         case 0x34:  string = '.';  break;
         case 0x35:  string = '/';  break;
-        case 0x36:  shiftOn = TRUE; break; // 오른 쉬프트
+        case 0x36:  string = 0x00; shiftOn = TRUE; break; // 오른 쉬프트
 
         case 0x39:  string = 0x20;  break; // 스페이스바
-
-        // 떼질때 필요한거
-        case 0xAA:  shiftOn = FALSE; break; // 왼 쉬프트 뗌 
-        case 0xB6:  shiftOn = FALSE; break; // 오른 쉬프트 뗌 
+    }
+    if (keyboardKey == 0xAA || keyboardKey == 0xB6){
+        shiftOn = FALSE;
     }
     if (shiftOn == TRUE){
         if (string >= 'a' && string <= 'z'){
-            string = string - 32;
+            string = string - 0x20;
         }
         DEBUG_draw_text(0,8, "Shift On");
     }
     return string;
 }
+/*
+
+        // 떼질때 필요한거
+        case 0xAA:  shiftOn = FALSE; break; // 왼 쉬프트 뗌 
+        case 0xB6:  shiftOn = FALSE; break; // 오른 쉬프트 뗌 
+*/
