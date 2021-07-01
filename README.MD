@@ -18,4 +18,4 @@ gcc-x86_64-linux-gnu, binutils-x86_64-linux-gnu 를 빌드하여 사용하였습
 	i586-pc-linux-objcopy -j .text -j .data -j .rodata -j .bss -S -O binary temp/ckernel.elf temp/ckernel.bin
 gcc를 컴파일할때 -ffreestanding는 표준 라이브러리를 안 가져다 쓸 때 사용하며, -masm=intel은 C코드 내부에 작성된 어셈블리어를 intel방식으로 읽어들이도록 하겠다 라는 의미<br>
 ld를 보면 -Ttext 0x10000은 프로그램(커널)이 0x10000에서 시작되도록 하는것이며(물리 주소로 알고 있습니다. 아직 MMU를 거치지 않음) gcc로 컴파일 한 오브젝트 파일을 합쳐서 elf파일로 출력합니다.(참고로 linux환경의 크로스 컴파일러이기 때문에 파일 구조는 ELF형태로 출력 된다.)<br>
-이후 필요한 TEXT, DATA, BSS를 추출해내기 위해 objcopy를 이용하여 추출하고, ckernel.bin에 모다서 놓습니다.(모아 놓는다의 동남방언형태 = 모다서 / 갑자기 사투리 넣고 싶어짐..)
+이후 필요한 TEXT, DATA, BSS를 추출해내기 위해 objcopy를 이용하여 추출하고, ckernel.bin에 모다서 놓습니다.
